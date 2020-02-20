@@ -1,4 +1,4 @@
-# ExtSelectivity
+# Extinction selectivity project overview
 This repository contains all data and R code necessary to evaluate extinction selectivity on species' geographic range size, as implemented in Darroch et al. 2020 (in review). The outputs of the scripts are provided in the /Results folder.
 
 Simulate fossil species distributions from by-sediment site placement:

@@ -1,5 +1,8 @@
-# As long as the code has been run once, the intermediate output is saved as csv files.
-# Look at the bottom of the script for a shortcut to read in these files and jump to line 225.																				   
+# Each time the script is run with a given combination of simulation parameters
+# (e.g. by-sediment site placement, null selectivity, with false extinction),
+# intermediate outputs are saved as csv files. One can either run the top sections of code
+# for each of the 8 possible parameter combinations, or skip ahead to line 285
+# and plot figures based on the already output files that are saved in the repository.
 library(beepr)
 library(ggplot2)
 library(reshape2)

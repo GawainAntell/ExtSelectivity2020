@@ -22,7 +22,7 @@ mus <- c(.25, .5, .75)
 sp_loss <- c(0, 1/3, 2/3)
 
 # Stage data
-stage_dat <- read.csv('Data/data_by_species/DS1_stage_data.csv', stringsAsFactors=FALSE)
+stage_dat <- read.csv('Data/DS1_stage_data.csv', stringsAsFactors=FALSE)
 stage_dat$dispersion <- log(stage_dat$dispersion)
 stage_dat$area <- log(stage_dat$area)
 bins <- stage_dat$stage
@@ -34,11 +34,11 @@ area_standing <- c(stage_dat$area, stage_dat$area[1])
 stage_dat$area_delta <- diff(area_standing)
 
 if (places=='by_sed'){
-  iucn <- read.csv('Data/data_by_sed/DS3_IUCN_range_data_0.5degree_raster.csv', stringsAsFactors=FALSE)
-  sims <- read.csv('Data/data_by_sed/DS5_simulation_range_data_0.5degree_by_sed.csv', stringsAsFactors=FALSE)
+  iucn <- read.csv('Data/DS3_IUCN_range_data_0.5degree_raster.csv', stringsAsFactors=FALSE)
+  sims <- read.csv('Data/DS5_simulation_range_data_0.5degree_by_sed.csv', stringsAsFactors=FALSE)
 } else {
-  iucn <- read.csv('Data/data_by_species/DS2_IUCN_range_data_vector.csv', stringsAsFactors=FALSE)
-  sims <- read.csv('Data/data_by_species/DS4_simulation_range_data_by_species.csv', stringsAsFactors=FALSE)
+  iucn <- read.csv('Data/DS2_IUCN_range_data_vector.csv', stringsAsFactors=FALSE)
+  sims <- read.csv('Data/DS4_simulation_range_data_by_species.csv', stringsAsFactors=FALSE)
   # 1 Nevada endemic species is never sampled by appears in by-sed IUCN data:
   iucn <- iucn[!iucn$species=='Neotamias_palmeri',]
 }
@@ -203,7 +203,7 @@ for (loss in sp_loss){
 beep('ping')
 
 # Save output with specific name
-fl_nm <- paste0('Data/data_',places,'/beta_tables_')		
+fl_nm <- paste0('Data/beta_tables_')		
 if (h0){  fl_nm <- paste0(fl_nm,'null')
 } else {  fl_nm <- paste0(fl_nm,'selective') }
 if (static){  fl_nm <- paste0(fl_nm,'_static_')

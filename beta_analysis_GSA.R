@@ -317,7 +317,7 @@ for (places in c('by_sed','by_species')){
       for (static in c(FALSE,TRUE)){
   
 # Collate outputs across mu values
-fl_nm <- paste0('Data/data_',places,'/beta_tables_')
+fl_nm <- paste0('Data/beta_tables_')
 if (h0){  fl_nm <- paste0(fl_nm,'null')
 } else {  fl_nm <- paste0(fl_nm,'selective')}
 if (static){  fl_nm <- paste0(fl_nm,'_static_')
@@ -360,19 +360,19 @@ dev.off()
 
 # use selective, static (no false extinctions), by-sed data for example
 # no species removed a priori
-ssbysed <- read.csv("Data/data_by_sed/beta_tables_selective_static_by_sed.csv",stringsAsFactors=FALSE)
+ssbysed <- read.csv("Data/beta_tables_selective_static_by_sed.csv",stringsAsFactors=FALSE)
 ssbysed$sites <- log(ssbysed$sites)
 noLoss <- ssbysed$sp_loss==0
 ssbysed <- ssbysed[noLoss,]
 
 # if skipping to line 225, un-comment and run:
-  # stage_dat <- read.csv('Data/data_by_species/DS1_stage_data.csv', stringsAsFactors=FALSE)
+  # stage_dat <- read.csv('Data/DS1_stage_data.csv', stringsAsFactors=FALSE)
   # stage_dat$dispersion <- log(stage_dat$dispersion)
   # stage_dat$area <- log(stage_dat$area)
   # bins <- stage_dat$stage
 
 # add to stage data the number of available grid cells per stage 
-sed_rastr <- read.csv('Data/data_by_sed/sediment_range_data_0.5degree.csv',stringsAsFactors=FALSE)
+sed_rastr <- read.csv('Data/sediment_range_data_0.5degree.csv',stringsAsFactors=FALSE)
 b_ordr <- match(bins,sed_rastr$bin)
 gc <- log(sed_rastr$gcell[b_ordr])
 stage_dat$gcell <- gc
@@ -426,7 +426,7 @@ dev.off()
 # Make panels for beta plot that SD requested
 
 # if skipping the top of the script, read in stage names in chron order:
-stage_dat <- read.csv('Data/data_by_species/DS1_stage_data.csv', stringsAsFactors=FALSE)
+stage_dat <- read.csv('Data/DS1_stage_data.csv', stringsAsFactors=FALSE)
 chron <- stage_dat$stage
 
 for (places in c('by_sed','by_species')){
@@ -434,7 +434,7 @@ for (places in c('by_sed','by_species')){
     for (static in c(FALSE,TRUE)){
       
       # Collate outputs across mu values
-      fl_nm <- paste0('Data/data_',places,'/beta_tables_')
+      fl_nm <- paste0('Data/beta_tables_')
       if (h0){  fl_nm <- paste0(fl_nm,'null')
       } else {  fl_nm <- paste0(fl_nm,'selective')}
       if (static){  fl_nm <- paste0(fl_nm,'_static_')

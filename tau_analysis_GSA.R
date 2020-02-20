@@ -7,15 +7,15 @@ library(ggplot2)
 # set whether to use range size data from by-species or by-sediment sites
 places <- 'by_sed' # 'by_species'
 
-stage_dat <- read.csv('Data/data_by_species/DS1_stage_data.csv', stringsAsFactors=FALSE)
+stage_dat <- read.csv('Data/DS1_stage_data.csv', stringsAsFactors=FALSE)
 bins <- stage_dat$stage
 
 if (places=='by_sed'){
-  iucn <- read.csv('Data/data_by_sed/DS3_IUCN_range_data_0.5degree_raster.csv', stringsAsFactors=FALSE)
-  sims <- read.csv('Data/data_by_sed/DS5_simulation_range_data_0.5degree_by_sed.csv', stringsAsFactors=FALSE)
+  iucn <- read.csv('Data/DS3_IUCN_range_data_0.5degree_raster.csv', stringsAsFactors=FALSE)
+  sims <- read.csv('Data/DS5_simulation_range_data_0.5degree_by_sed.csv', stringsAsFactors=FALSE)
 } else {
-  iucn <- read.csv('Data/data_by_species/DS2_IUCN_range_data_vector.csv', stringsAsFactors=FALSE)
-  sims <- read.csv('Data/data_by_species/DS4_simulation_range_data_by_species.csv', stringsAsFactors=FALSE)
+  iucn <- read.csv('Data/DS2_IUCN_range_data_vector.csv', stringsAsFactors=FALSE)
+  sims <- read.csv('Data/DS4_simulation_range_data_by_species.csv', stringsAsFactors=FALSE)
   # 1 Nevada endemic species is never sampled by appears in by-sed IUCN data:
   iucn <- iucn[!iucn$species=='Neotamias_palmeri',]
 }

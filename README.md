@@ -4,11 +4,14 @@ This repository contains all data and R code necessary to evaluate extinction se
 Simulate fossil species distributions from by-sediment site placement:
 - convert_mam_polygons_to_brick_GSA.R
 - simulate_by_sed_GSA.R
+
 Simulate fossil species distributions from by-species site placement:
 - contiguous_US_code_clean_SD.R
 - reformat_SD_data.R
+
 Analyze accuracy of paleo-range size reconstruction:
 - tau_analysis_GSA.R
+
 Analyze accuracy and precision of extinction selectivity:
 - beta_analysis_GSA.R
 

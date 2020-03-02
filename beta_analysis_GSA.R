@@ -42,7 +42,8 @@ if (places=='by_sed'){
 } else {
   iucn <- read.csv('Data/DS2_IUCN_range_data_vector.csv', stringsAsFactors=FALSE)
   sims <- read.csv('Data/DS4_simulation_range_data_by_species.csv', stringsAsFactors=FALSE)
-  # 1 Nevada endemic species is never sampled by appears in by-sed IUCN data:
+  # 1 Nevada endemic species is never sampled in the by-sediment site placement approach
+  # but appears in by-species IUCN data:
   iucn <- iucn[!iucn$species=='Neotamias_palmeri',]
 }
 spp <- iucn$species

@@ -4,7 +4,7 @@ library(raster)
 library(sp)
 library(rgdal)
 
-grid_res <- 0.5 #for (grid_res in c(0.5, 1, 5)){
+grid_res <- 0.5 
 
 # Equal-area projected template for rasterizing polygons
 us_bounds <- c(-135, -65, 22, 50)
@@ -18,12 +18,12 @@ values(r_prj) <- 1:ncell(r_prj)
 # North American mammal ranges
 
 # Remove species not found within continental US extent
-mam_data <- readOGR("Data/TERRESTRIAL_MAMMALS.shp")
+mam_data <- readOGR("Data/shapefiles/TERRESTRIAL_MAMMALS.shp")
 mam_clipped <- crop(mam_data, extent(us_bounds))
 
 # use exactly the same 342 species as by-species approach
 # e.g. exclude Ursus americanus
-vetted <- read.csv('Data/data_by_species/DS2_IUCN_range_data_vector.csv',stringsAsFactors=FALSE)
+vetted <- read.csv('Data/DS2_IUCN_range_data_vector.csv',stringsAsFactors=FALSE)
 spp <- gsub('_',' ', vetted$species)
 
 # Format N. American mammal polygons as a brick:
@@ -43,7 +43,7 @@ for (sp_nm in spp) {
 beep('treasure')
 # native 'raster' format will preserve layers names when read back in to R
 # but also export a header file in order to open file in other app, e.g. QGIS
-sp_nm <- paste0('Data/data_by_sed/NAm_mammal_ranges_',grid_res,'degree_any_overlap')
+sp_nm <- paste0('Data/NAm_mammal_ranges_',grid_res,'degree_any_overlap')
 writeRaster(spp_brik, sp_nm, format='raster', overwrite=TRUE)
 hdr(spp_brik, filename=sp_nm, format='ENVI')
 
@@ -68,19 +68,6 @@ for (j in 1:n_bins){
   names(sed_r) <- bins[j]
   sed_brik <- brick(list(sed_brik, sed_r))
 }
-sed_nm <- paste0('Data/data_by_sed/stage_sediment_',grid_res,'degree_any_overlap')
+sed_nm <- paste0('Data/stage_sediment_',grid_res,'degree_any_overlap')
 writeRaster(sed_brik, sed_nm, format='raster', overwrite=TRUE)
 hdr(sed_brik, filename=sed_nm, format='ENVI')
-
-# Format Neogene sediment polygons as a raster:
-#neo <- readOGR('Data/Neogene_Final.shp')
-#neo_prj <- spTransform(neo, prj)
-#neo_cells_l <- raster::extract(r_prj, neo_prj, weights=TRUE, small=TRUE)
-#neo_cells <- unique(unlist(neo_cells_l))
-#neo_r <- r_prj
-#values(neo_r) <- 0
-#values(neo_r)[neo_cells] <- 1
-#neo_nm <- paste0('Data/Data_191021/Neogene_sediment_',grid_res,'degree_any_overlap')
-#writeRaster(neo_r, neo_nm, format='raster', overwrite=TRUE)
-#hdr(neo_r, filename=neo_nm, format='ENVI')
-#} # loop through resolutions

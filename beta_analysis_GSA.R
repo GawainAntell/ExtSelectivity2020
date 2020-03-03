@@ -230,7 +230,7 @@ cors > 0.6
   #    for (static in c(FALSE,TRUE)){
         
         # Collate outputs across mu values
-  #      fl_nm <- paste0('Data/data_',places,'/beta_tables_')
+  #      fl_nm <- paste0('Data/beta_tables_')
   #      if (h0){  fl_nm <- paste0(fl_nm,'null')
   #      } else {  fl_nm <- paste0(fl_nm,'selective')}
   #      if (static){  fl_nm <- paste0(fl_nm,'_static_')

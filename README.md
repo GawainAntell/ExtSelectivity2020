@@ -1,4 +1,7 @@
 # Extinction selectivity project overview
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3762196.svg)](https://doi.org/10.5281/zenodo.3762196)
+
 This repository contains all data and R code necessary to evaluate extinction selectivity on species' geographic range size. The outputs of the scripts are provided in the /Results folder. Please cite the study as:
 
 Darroch, S.D., Casey, M., Antell, G.S., Sweeney, A., and Saupe, E.E. (in press). High preservation potential of paleogeographic range size distributions in deep time. American Naturalist.

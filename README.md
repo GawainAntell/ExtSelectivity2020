@@ -1,5 +1,7 @@
 # Extinction selectivity project overview
-This repository contains all data and R code necessary to evaluate extinction selectivity on species' geographic range size, as implemented in Darroch et al. 2020 (in review). The outputs of the scripts are provided in the /Results folder.
+This repository contains all data and R code necessary to evaluate extinction selectivity on species' geographic range size. The outputs of the scripts are provided in the /Results folder. Please cite the study as:
+
+Darroch, S.D., Casey, M., Antell, G.S., Sweeney, A., and Saupe, E.E. (in press). High preservation potential of paleogeographic range size distributions in deep time. American Naturalist.
 
 Simulate fossil species distributions from by-sediment site placement:
 - convert_mam_polygons_to_brick_GSA.R

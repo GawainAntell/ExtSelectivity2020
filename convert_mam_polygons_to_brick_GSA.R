@@ -48,12 +48,12 @@ writeRaster(spp_brik, sp_nm, format='raster', overwrite=TRUE)
 hdr(spp_brik, filename=sp_nm, format='ENVI')
 
 # Format Paleozoic sediment polygons as a brick:
-all_sed_fls <- list.files('Data/spatial_data', recursive=TRUE)
+all_sed_fls <- list.files('Data/spatial_data/stage_shp_fls', recursive=TRUE)
 shp_fl_pos <- grep('.shp', all_sed_fls)
 xml_fl_pos <- grep('.shp.xml', all_sed_fls)
 shp_fl_pos <- setdiff(shp_fl_pos, xml_fl_pos)
 shp_fls <- all_sed_fls[shp_fl_pos]
-shp_fls_dsn <- paste0('Data/spatial_data/', shp_fls)
+shp_fls_dsn <- paste0('Data/spatial_data/stage_shp_fls/', shp_fls)
 bins <- sapply(shp_fls, function(x) str_split(x, '_')[[1]][2] )
 n_bins <- length(bins)
 sed_brik <- brick()

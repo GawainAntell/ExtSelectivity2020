@@ -1,11 +1,11 @@
 library(stringr)
 # This script compiles the dozens of files output from running
 # contiguous_US_code_clean_SD.R, that is, the by-species simulation data.
-# The compiled csv files are named DS1 and DS2, and these are
+# The compiled csv files are named DS1, DS2 and DS4, and these are
 # saved in the Data folder for use in the tau and beta analysis scripts.
 # To run this code, first unzip the 'SD_data' folder.
 
-foldrExpt <- 'Data/data_by_species/'
+foldrExpt <- 'Data/'
 foldrMain <- 'Data/SD_data/'  
 foldrStage <- paste0(foldrMain,'For_multivariate/')
 

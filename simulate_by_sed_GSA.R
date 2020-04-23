@@ -1,6 +1,8 @@
 # Seed localities across N. America randomly within sediment.
 # Do all spatial operations with raster data.
 # Run simulations in parallel.
+# This script exports the DS3 and DS5 data files that are used 
+# in tau and beta analysis.
 
 library(maptools)
 library(sp)
@@ -26,10 +28,9 @@ sites <- round(exp(2:7))
 # a natural exponential series
 
 # read in data
-spp_brik <- brick(paste0('Data/data_by_sed/NAm_mammal_ranges_', grid_res,'degree_any_overlap.grd'))
+spp_brik <- brick(paste0('Data/spatial_data/NAm_mammal_ranges_', grid_res,'degree_any_overlap.grd'))
 spp <- names(spp_brik)
-#neo_r <- raster(paste0('Data/data_by_sed/Neogene_sediment_', grid_res,'degree_any_overlap.grd'))
-sed_brik <- brick(paste0('Data/data_by_sed/stage_sediment_', grid_res,'degree_any_overlap.grd'))
+sed_brik <- brick(paste0('Data/spatial_data/stage_sediment_', grid_res,'degree_any_overlap.grd'))
 bins <- names(sed_brik)
 # convert raster brick to list of rasters through which to iterate
 sed_l <- lapply(1:length(bins), function(x) sed_brik[[x]])
@@ -127,14 +128,8 @@ colnames(spp_df) <- c('species','chull','gcd','gcell','latrange') # 'mst',
 scarce <- which(spp_df$gcell %in% c('1','2'))
 spp_df <- spp_df[-scarce,]
 spp <- as.character(spp_df$species)
-sp_nm <- paste0('Data/data_by_sed/DS3_IUCN_range_data_',grid_res,'degree_raster.csv')
+sp_nm <- paste0('Data/DS3_IUCN_range_data_',grid_res,'degree_raster.csv')
 write.csv(spp_df, sp_nm, row.names=FALSE)
-
-sed_ranges <- sapply(bins, range_sizer, spp_brik=sed_brik, loc_pts=all_pts)
-sed_df <- data.frame(t(sed_ranges))
-colnames(sed_df) <- c('bin','chull','gcd','gcell','latrange') # 'mst',
-sed_nm <- paste0('Data/data_by_sed/sediment_range_data_',grid_res,'degree.csv')
-write.csv(sed_df, sed_nm, row.names=FALSE)
 
 # apply over all Paleozoic bins and number of sites
 # 2.5 hours for 100 replicates
@@ -159,22 +154,5 @@ rangeCols <- grep('rep', colnames(fin))
 sumRange <- rowSums(fin[,rangeCols], na.rm = TRUE) 
 fin <- fin[sumRange != 0,]
 
-fin_nm <- paste0('Data/data_by_sed/DS5_simulation_range_data_',grid_res,'degree_by_sed.csv')
+fin_nm <- paste0('Data/DS5_simulation_range_data_',grid_res,'degree_by_sed.csv')
 write.csv(fin, fin_nm, row.names = FALSE)
-
-# Apply over Neogene sedimentary rock
-
-#sites <- c(7, 12, 20, 33, 55, 90, 148, 245, 403)
-#if (grid_res==0.5){
-#  sites <- sites*4
-#}
-
-#registerDoParallel(ncores)
-#neo_sim <- foreach(s=sites, .packages=pkgs, .combine=rbind, .inorder=FALSE) %dopar% 
-#  iter_sim(n_iter=n_iter, sed=neo_r, s=s, spp=spp, spp_brik=spp_brik)
-#stopImplicitCluster()
-
-#neo_sim$sites <- as.numeric(as.character(neo_sim$sites))
-#neo_sim$sim_id <- paste0(sprintf("%03d", neo_sim$sites), neo_sim$metric)
-#neo_nm <- paste0('Data/Data_191021/Noegene_preserved_range_data_',grid_res,'degree.csv')
-#write.csv(neo_sim, neo_nm, row.names = FALSE)

@@ -1,10 +1,12 @@
 # Extinction selectivity project overview
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3765445.svg)](https://doi.org/10.5281/zenodo.3765445)
+
 This repository contains all data and R code necessary to evaluate extinction selectivity on species' geographic range size. The outputs of the scripts are provided in the /Results folder. Please cite the study as:
 
 Darroch, S.A.F., Casey, M.M., Antell, G.S., Sweeney, A., and Saupe, E.E. (2020). High preservation potential of paleogeographic range size distributions in deep time. American Naturalist.
 
-There are 4 R files that manipulate the raw input data and export the 5 intermediate data files that are then called by the analysis scripts. Before running the simulation scripts, unzip the /spatial_data and /SD_data folders within /Data. Note that due to the probabilistic nature of some simulation steps (e.g. the selection of species to survive vs. go extinct), the exact output of each simulation will vary slightly from one run to another.
+There are 4 R files that manipulate the raw input data and export the 5 intermediate data files that are then called by the analysis scripts. Before running the simulation scripts, download the zipped /spatial_data and /SD_data folders at https://doi.org/10.5281/zenodo.3765445 and move them to /Data. Note that due to the probabilistic nature of some simulation steps (e.g. the selection of species to survive vs. go extinct), the exact output of each simulation will vary slightly from one run to another.
 
 Simulate fossil species distributions from by-sediment site placement:
 - convert_mam_polygons_to_brick_GSA.R
